@@ -1245,6 +1245,7 @@ i[34567]86-*-freebsd*)
 	;;
 x86_64-*-freebsd*)
 	tm_file="${tm_file} i386/att.h dbxelf.h elfos.h ${fbsd_tm_file} i386/x86-64.h i386/freebsd.h i386/freebsd64.h"
+	tmake_file="${tmake_file} i386/t-crtstuff"
 	;;
 i[34567]86-*-netbsdelf*)
 	tm_file="${tm_file} i386/att.h dbxelf.h elfos.h netbsd.h netbsd-elf.h i386/netbsd-elf.h"
@@ -1258,6 +1259,7 @@ i[34567]86-*-netbsd*)
 x86_64-*-netbsd*)
 	tm_file="${tm_file} i386/att.h dbxelf.h elfos.h netbsd.h netbsd-elf.h i386/x86-64.h i386/netbsd64.h"
 	float_format=i386
+	tmake_file="${tmake_file} i386/t-crtstuff"
 	;;
 i[34567]86-*-openbsd*)
 	# needed to unconfuse gdb
@@ -1422,6 +1424,7 @@ i[34567]86-*-solaris2*)
 		tm_file="i386/sol2gas.h ${tm_file}"
 	fi
 	tmake_file="i386/t-sol2 t-svr4"
+	tmake_file="${tmake_file} i386/t-crtstuff"
 	if test x$gnu_ld = xyes; then
 		tmake_file="$tmake_file t-slibgcc-elf-ver"
 	else

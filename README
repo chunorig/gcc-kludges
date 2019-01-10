@@ -1,4 +1,6 @@
 This directory contains the GNU Compiler Collection (GCC).
+This is a fork containing some kludges for building older versions on
+newer systems.  See README-gcc-kludges for details.
 
 The GNU Compiler Collection is free software.  See the file COPYING
 for copying permission.  The manuals, and some of the runtime

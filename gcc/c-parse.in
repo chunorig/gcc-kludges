@@ -61,6 +61,10 @@ end ifobjc
 
 /* Cause the "yydebug" variable to be defined.  */
 #define YYDEBUG 1
+/* Attempted fix for more recent tools. */
+#ifndef YYLEX
+#define YYLEX yylex()
+#endif
 
 /* Rename the "yyparse" function so that we can override it elsewhere.  */
 #define yyparse yyparse_1

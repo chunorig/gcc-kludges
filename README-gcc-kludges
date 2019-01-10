@@ -1,0 +1,58 @@
+gcc-kludges
+by chuno (Chief Unoriginal <nobody@example.com>)
+
+All significant additions (are there any?) Copyright chuno but do
+whatever you want with it.
+
+NO WARRANTY OF COURSE!
+
+
+===================
+Further information
+===================
+
+The real notes, and any scripts that may have been provided for your
+convenience, can be found by checking out the gcc-kludges-meta branch from this
+repo.
+
+gcc-kludges-meta is an orphan branch containing files that are more applicable
+to the entire history than any given revision, due to the nature of this
+project.
+
+
+=======================
+Purpose of this project
+=======================
+
+To make it easier to build old versions of gcc.  No guarantees of course!
+
+At least on my machine, these patches allow gcc to be bootstrapped with support
+for C only, but I can't guarantee that "make check-gcc" will work.
+
+
+==========
+The scheme
+==========
+
+Some of the release tags, for example gcc-3_2_3-release, are each the root of a
+little branch called kludge-*.
+
+So gcc-${REV}-release is the root of a small chain of commits leading to
+kludge-${REV}.  There is also a kludge-${REV}-volatile; more on that later.
+
+Checking out kludge-${REV} instead of gcc-${REV}-release should allow configure
+and bootstrap to work without further modification and without adding symlinks
+to your system, if you're lucky, but only if you are just building the C
+compiler and not other languages.
+
+The difference between kludge-${REV} and kludge-${REV}-volatile is that if I
+push changes to the kludge branches, kludge-${REV}-volatile might be a remade
+branch while kludge-${REV} will only ever be modified by adding commits to the
+tip.
+
+Both branches will contain the same actual tree at the tip anyway.
+
+Good luck, and remember:
+
+1. No promises!  This might help you but it's not perfect by a long way.
+2. Don't forget to checkout the gcc-kludges-meta branch for more help.

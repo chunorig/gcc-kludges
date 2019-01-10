@@ -585,11 +585,19 @@ typedef char _Bool;
    compiling gcc, so that the autoconf declaration tests for malloc
    etc don't spuriously fail.  */
 #ifdef IN_GCC
-#undef malloc
-#undef realloc
 #undef calloc
 #undef strdup
- #pragma GCC poison malloc realloc calloc strdup
+ #pragma GCC poison calloc strdup
+
+#if defined(FLEX_SCANNER) || defined (YYBISON)
+/* Flex and bison use malloc and realloc.  Yuk.  */
+#define malloc xmalloc
+#define realloc xrealloc
+#else
+#undef malloc
+#undef realloc
+ #pragma GCC poison malloc realloc
+#endif
 
 /* Old target macros that have moved to the target hooks structure.  */
  #pragma GCC poison ASM_OPEN_PAREN ASM_CLOSE_PAREN			\

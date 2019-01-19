@@ -95,7 +95,9 @@ FLAGS_TO_PASS = \
 	"exec_prefix=$(exec_prefix)" \
 	"libdir=$(libdir)" \
 	"libsubdir=$(libsubdir)" \
-	"tooldir=$(tooldir)"
+	"tooldir_bin=$(tooldir_bin)"
+	"tooldir_lib=$(tooldir_lib)"
+	"tooldir_include=$(tooldir_include)"
 
 # Subdirectories to recurse into. We need to override this during cleaning
 SUBDIRS = testsuite
@@ -372,10 +374,10 @@ install_to_libdir: all
 	@$(MULTIDO) $(FLAGS_TO_PASS) multi-do DO=install
 
 install_to_tooldir: all
-	${mkinstalldirs} $(DESTDIR)$(tooldir)/lib/$(MULTIOSDIR)
-	$(INSTALL_DATA) $(TARGETLIB) $(DESTDIR)$(tooldir)/lib/$(MULTIOSDIR)/$(TARGETLIB)n
-	( cd $(DESTDIR)$(tooldir)/lib/$(MULTIOSDIR) ; chmod 644 $(TARGETLIB)n; $(RANLIB) $(TARGETLIB)n )
-	mv -f $(DESTDIR)$(tooldir)/lib/$(MULTIOSDIR)/$(TARGETLIB)n $(DESTDIR)$(tooldir)/lib/$(MULTIOSDIR)/$(TARGETLIB)
+	${mkinstalldirs} $(DESTDIR)$(tooldir_lib)/$(MULTIOSDIR)
+	$(INSTALL_DATA) $(TARGETLIB) $(DESTDIR)$(tooldir_lib)/$(MULTIOSDIR)/$(TARGETLIB)n
+	( cd $(DESTDIR)$(tooldir_lib)/$(MULTIOSDIR) ; chmod 644 $(TARGETLIB)n; $(RANLIB) $(TARGETLIB)n )
+	mv -f $(DESTDIR)$(tooldir_lib)/$(MULTIOSDIR)/$(TARGETLIB)n $(DESTDIR)$(tooldir_lib)/$(MULTIOSDIR)/$(TARGETLIB)
 	@$(MULTIDO) $(FLAGS_TO_PASS) multi-do DO=install
 
 # required-list was used when building a shared bfd/opcodes/libiberty

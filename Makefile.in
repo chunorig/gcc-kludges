@@ -43,8 +43,12 @@ infodir=${prefix}/info
 mandir=${prefix}/man
 gxx_include_dir=${includedir}/g++
 
-tooldir = $(exec_prefix)/$(target_alias)
-build_tooldir = $(exec_prefix)/$(target_alias)
+tooldir_bin = $(exec_prefix)/bin/$(target_alias)
+tooldir_lib = $(exec_prefix)/lib/$(target_alias)
+tooldir_include = $(exec_prefix)/include/$(target_alias)
+build_tooldir_bin = $(exec_prefix)/bin/$(target_alias)
+build_tooldir_lib = $(exec_prefix)/lib/$(target_alias)
+build_tooldir_include = $(exec_prefix)/include/$(target_alias)
 
 program_transform_name =
 
@@ -408,8 +412,12 @@ BASE_FLAGS_TO_PASS = \
 	"sbindir=$(sbindir)" \
 	"sharedstatedir=$(sharedstatedir)" \
 	"sysconfdir=$(sysconfdir)" \
-	"tooldir=$(tooldir)" \
-	"build_tooldir=$(build_tooldir)" \
+	"tooldir_bin=$(tooldir_bin)" \
+	"tooldir_lib=$(tooldir_lib)" \
+	"tooldir_include=$(tooldir_include)" \
+	"build_tooldir_bin=$(build_tooldir_bin)" \
+	"build_tooldir_lib=$(build_tooldir_lib)" \
+	"build_tooldir_include=$(build_tooldir_include)" \
 	"gxx_include_dir=$(gxx_include_dir)" \
 	"gcc_version=$(gcc_version)" \
 	"gcc_version_trigger=$(gcc_version_trigger)" \

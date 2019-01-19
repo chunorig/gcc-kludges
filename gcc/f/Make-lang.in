@@ -242,7 +242,7 @@ f77.rebuilt: f/g77.info $(srcdir)/f/BUGS \
 f77.install-normal:
 
 # Install the driver program as $(target)-g77
-# and also as either g77 (if native) or $(tooldir)/bin/g77.
+# and also as either g77 (if native) or $(tooldir_bin)/g77.
 f77.install-common: installdirs
 	-if [ -f f771$(exeext) ] ; then \
 	  if [ -f g77-cross$(exeext) ] ; then \

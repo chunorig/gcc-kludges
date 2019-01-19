@@ -1,0 +1,53 @@
+Branches that are added to gcc:
+
+gcc-kludges-meta
+	Contains files which are relevant to the kludging of the history rather
+	than the source tree you end up with.  Like this one.
+
+	This is an orphan branch, effectively used as a separate repository.  I
+	suspect some will say this is bad practice, and they might be right.
+
+kludge-<release>
+kludge-<release>-volatile
+	The tree at each of these points is identical.  But if there is an
+	update to kludge-<release> it will only be done by adding a new commit,
+	i.e. it will always be a fast-forward.  kludge-<release>-volatile may
+	be a rebuilt branch after an update.
+
+kludge-4_9_4
+kludge-4_9_4-volatile
+	Forked from gcc-4_9_4-release (gcc-4_9-branch).
+
+kludge-4_9_3
+kludge-4_9_3-volatile
+	Forked from gcc-4_9_3-release.
+
+kludge-4_9_2
+kludge-4_9_2-volatile
+	Forked from gcc-4_9_2-release.
+
+kludge-4_9_1
+kludge-4_9_1-volatile
+	Forked from gcc-4_9_1-release.
+
+kludge-4_9_0
+kludge-4_9_0-volatile
+	Forked from gcc-4_9_0-release.
+
+
+kludge-3_2_3
+kludge-3_2_3-volatile
+	Forked from gcc-3_2_3-release.
+
+kludge-3_2_2
+kludge-3_2_2-volatile
+	Forked from gcc-3_2_2-release.
+
+kludge-3_2_1
+kludge-3_2_1-volatile
+	Forked from gcc-3_2_1-release.
+
+kludge-3_2
+kludge-3_2-volatile
+	Forked from gcc-3_2-release.
+	(note gcc-3_2-release does NOT have a "_0" in it)

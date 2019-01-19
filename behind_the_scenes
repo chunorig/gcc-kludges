@@ -1,0 +1,117 @@
+This started as a way of finding the patches needed just for building 3.2.3,
+but it got a little out of hand.  The idea was to start from 4.9 branch, which
+built fine as long as symlinks were added to the build machine to make search
+paths work correctly.
+
+From there a number of "fixbuild" branches were made by bisecting between gcc
+4.9 and the common ancestor of 4.9 and 3.2.  Each branch added a patch or
+occasionally removed one in order to get closer to being able to bootstrap the
+common ancestor.  Some places where bugs came and went managed to slip
+entirely between the test points during bisecting, mercifully.
+
+After finally reaching the common ancestor, it was time to start working
+upward toward 3.2.3, applying the patches from the common ancestor's fixbuild
+branch, and then build an entire parallel history.
+
+It would look like this:
+
+trunk       gcc-4_9-branch                      gcc-4_9-branch-clobbered
+ |             |                                   |
+ |            / . . . . sidelink . . . . . . . .  /
+ |           /                                   /
+ |  .-------'                           .-------'
+ | /                   trunk clobbered /
+ |/                                   /
+ |       .---------------------------'
+ |      /
+ |     |       gcc-3_2_3-release  gcc-3_2-branch-clobbered
+ |. . .|             |                 |
+ |     |             |. . . . . . . . .|
+ |     |             |                 |
+ |. . .|             |. . . . . . . . /
+ |     |             |               /
+ |     |             |              /
+ |     |             |             /
+  \     \            |            /
+   \     \           |           /
+    '---. \    .----'   .-------'
+         \ \  /        /
+	  '-\/--------'
+	    + (common ancestor)
+	    |
+
+The side links would be like this:
+
+                |            | X`
+                |           /|
+  Original      |          / |     Clobbered
+  branch        |         A  |     branch
+                |        /   |
+                |       A    |
+                |      /     |
+                |     f      |
+                |    /       |
+                |   f        |
+                |  /         |
+                | f          |
+                |/           |
+              X |            |
+
+Where
+
+X is the commit on the original branch where one of the fixbuild branches is
+based.
+
+The "f"s are all the commits up to fixbuild-NN (e.g. fixbuild-21), A and B are
+the directory-mangling scripts' commits, and X' is a commit with Author
+name,date,email and Commit Message taken from X.
+
+A shell script exists that actually does this.  It can take more than a day on
+my machine, which is not exactly a workhorse.
+
+I might still do something like this for real eventually, but it's probably
+not helpful to anyone.  It would mean trying to track down the exact point
+between the existing kludgetip branches where disappearing patches actually do
+their disappearing, and creating new branches there, to increase the chance
+that a build from any point in the side branch would work..
+
+The script which built side branches did it by having a notion of what "their"
+current commit was, equivalent to "our" branch tip.  The branch would grow in
+parallel to advancing commits on the main branch up to the next point where a
+fixbuild was rooted.  There were two ways to make the next commit on our
+branch, a long way and a short way.
+
+The short way was allowed if:
+
+- This was not the first commit in the section.
+
+- No file touched by the original commit's changes was also touched by the
+  fixbuild branch we were advancing toward.
+
+- No file considered for mangling by the directory swapping scripts was
+  touched by the original commit's changes.
+
+The short way was just to cherry-pick the original commit onto our branch.
+
+The long way was to cherry-pick the fixbuild we were heading toward on top of
+the original commit, then apply the mangling scripts, all without actually
+committing because we would end up with loads of dead objects very quickly,
+then move back to our branch tip without changing the working tree or index,
+then commit using -C <original commit>.
+
+----------------
+
+The fixbuilds (which have since been renamed kludgetip, and sometimes remade
+differently by scripts) had some unnecessary changes in them.  Some of the
+patches became unnecessary going backward through the history without actually
+(apparently) breaking anything.
+
+So another script exists which can remake one of these branches with one of
+its commits missing, and attempt a build.  It does this once for each commit,
+and creates a list of "keep" and "omit" commits.  Another script can read the
+list and try out a branch without any of the omits.  If that bootstraps the
+new branch is kept.
+
+In fact there are only two kludgetips on the 4.9 branch.  kludgetip-00 is
+where the extra README file is first added, and kludgetip-01 contains a single
+small patch, which is cherry-picked onto the releases 4.9.0-3

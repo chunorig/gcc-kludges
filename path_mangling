@@ -1,0 +1,19 @@
+Some of the commits in the kludge branches are labelled
+
+02add_lib_dir.sh auto-patch
+03swap_search_dirs.sh auto-patch
+
+Early on it was found that trying to mess with certain things would require
+cherry-picking to be manually interfered with extremely regularly, due to the
+extent of the changes to certain files and the highly changing nature of those
+files in the repository.
+
+So these files look for likely candidate files in the whole tree based on their
+names and filter them through sed.
+
+They begin with 02 and 03 because in their directory there is also an 01
+(it's called 01cherrypick-fixbuild.sh)
+
+In this directory there is a single script - mangle_working_paths -that does
+the whole thing in one step, but it doesn't attempt to make a commit or update
+the index.

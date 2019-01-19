@@ -1,0 +1,141 @@
+#!/bin/sh
+# mangle_paths by chuno (Chief Unoriginal)
+# Free to use however.
+#
+# This does what the original 02add_lib_dir.sh and 03swap_search_dirs.sh did.
+# (see "path_mangling")
+# But this time:
+#
+# Takes one or two options: "--addlib", "--swapdirs" or both.
+# Then a "--" option.
+# Then filenames.
+#
+addlib=
+swapdirs=
+error=no
+
+while [ $# -ne 0 ]; do
+	case $1 in
+	--addlib|--swapdirs) eval "${1#--}=yes" ;;
+	--) shift; break;;
+	-*) echo "unrecognised option $1" >&2
+	   error=yes
+	   ;;
+	*) break;;
+	esac
+	shift
+done
+
+if [ $error = yes ]; then
+	exit 1
+fi
+
+if [ x$addlib$swapdirs = x ]; then
+	echo "No operations to perform" >&2
+	exit
+fi
+
+# It turns out that the whole joining thing we do here messes with the
+# swapdirs stuff if we try to use them together.
+# This is because of what the N command is doing.
+sed_addlib='
+: startaddlib
+/\\$/b join
+b replace
+: join
+N
+b startaddlib
+: replace
+/-B\S+\/bin\b/{
+	/-B\S+\/lib\b/b isystem
+	s,-B(\S+/)bin([/ \t:"]|$),-B\1bin\2 -B\1lib\2,g
+	: isystem
+	/-isystem\s*\S+\/include\b/b endaddlib
+	s,-B(\S+/)bin([/ \t:"]|$),-B\1bin\2 -isystem \1include\2,g
+}
+: endaddlib
+'
+
+q=\[\"\'\]
+qe=\[\"\'=\]
+
+# tooldir variable creation in configure templates and configure
+sed_swapdirs_1='
+/^\s*\w*tooldir\s*=\s*'$q'*\$[{(]\w*(prefix)[)}]/{
+	# e.g. build_tooldir=$(exec_prefix)/$(foo)
+	# becomes
+	# build_tooldir_bin=$(exec_prefix)/bin/$(foo)
+	# build_tooldir_lib=$(exec_prefix)/lib/$(foo)
+	# build_tooldir_lib=$(exec_prefix)/include/$(foo)
+	s,^(\s*\w+)(\s*=.*)(\$[{(].*prefix[)}])(.*)(\s*#.*)?$,\1_bin\2\3/bin\4\5\n\1_lib\2\3/lib\4\n\1_include\2\3/include\4,
+	b # done with this line
+}
+'
+
+# other assignments
+# this matches in Makefile templates hopefully
+# also the places in configure like build_tooldir=${tooldir}
+sed_swapdirs_2='/\w*tooldir\s*=.*tooldir/ {
+	s/(\w*tooldir)([^a-zA-Z0-9_]|$)/\1_bin\2/g # all *tooldir changed
+	p
+	s/tooldir_bin/tooldir_lib/g # and duplicated and changed again
+	p
+	s/tooldir_lib/tooldir_include/g # and duplicated and changed again
+	b
+}
+'
+
+# lines not of the above form that contain e.g. $(*tooldir)/bin
+# change that to $(*tooldir_bin)
+sed_swapdirs_3='s,(\$[({])(\w*tooldir)([})])/(bin|lib|include)([^a-zA-Z0-9_.-]|$),\1\2_\4\3\5,g
+t
+'
+# configure.ac or configure.in macro
+sed_swapdirs_4='s,(AC_SUBST\(\w*tooldir)(\))((\s*#.*)?),\1_bin\2\3\n\1_lib\2\n\1_include\2,
+t
+'
+
+# configure (new style) generated substition vars list
+# including one line and multi line
+sed_swapdirs_5='/^\s*ac_subst_vars='$q'/,/'$qe'/{
+	s/(\w*tooldir)$/\1_bin\n\1_lib\n\1_include/
+	s/(\w*tooldir)(\W)/\1_bin\2\1_lib\2\1_include\2/g
+	b
+}
+'
+
+# configure (old style) generated giant sed script.
+# This also catches pre-autoconf sed scripts which are done a little
+# differently.
+sed_swapdirs_6='/sed.*s..?@/,/^$/{
+	/^\s*(-e\s+'$q')?\s*s.@\w*tooldir@/{
+		s/\w*tooldir/&_bin/g
+		p
+		s/tooldir_bin/tooldir_lib/g
+		p
+		s/tooldir_lib/tooldir_include/g
+		b
+	}
+}
+'
+
+sed_swapdirs="$sed_swapdirs_1$sed_swapdirs_2$sed_swapdirs_3$sed_swapdirs_4$sed_swapdirs_5$sed_swapdirs_6"
+
+# This doesn't work because sed_addlib joins lines in pattern buffer.
+#sed -r -i -s ${addlib:+-e "$sed_addlib"} ${swapdirs:+-e "$sed_swapdirs"} "$@"
+
+# ... so we have to use two separate sed commands
+if [ $addlib$swapdirs = yesyes ]; then
+	for file in "$@"; do
+		tmpfile="$(mktemp "$file-XXXX")" || {
+			error=yes
+			continue
+		}
+		chmod `stat -c %a "$file"` "$tmpfile"
+		sed -r -s -e "$sed_addlib" <"$file" | sed -r -s -e "$sed_swapdirs" >"$tmpfile"
+		mv "$tmpfile" "$file"
+	done
+else
+	sed -r -s -i -e "${addlib:+"$sed_addlib"}${swapdirs:+"$sed_swapdirs"}" "$@"
+fi
+

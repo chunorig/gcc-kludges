@@ -257,7 +257,7 @@ ada.generated-manpages:
 ada.install-normal:
 
 # Install the binder program as $(target_alias)-gnatbind
-# and also as either gnatbind (if native) or $(tooldir)/bin/gnatbind
+# and also as either gnatbind (if native) or $(tooldir_bin)/gnatbind
 # likewise for gnatf, gnatchop, and gnatlink, gnatkr, gnatmake, gnatcmd,
 # gnatprep, gnatbl, gnatls, gnatxref, gnatfind
 ada.install-common:
@@ -267,9 +267,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatbind$(exeext); \
 	    $(INSTALL_PROGRAM) gnatbind-cross$(exeext) $(bindir)/$(target_alias)-gnatbind$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	      rm -f $(tooldir)/bin/gnatbind$(exeext); \
-	      $(INSTALL_PROGRAM) gnatbind-cross$(exeext) $(tooldir)/bin/gnatbind$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	      rm -f $(tooldir_bin)/gnatbind$(exeext); \
+	      $(INSTALL_PROGRAM) gnatbind-cross$(exeext) $(tooldir_bin)/gnatbind$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatbind$(exeext); \
@@ -282,9 +282,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatbl$(exeext); \
 	    $(INSTALL_PROGRAM) gnatbl-cross$(exeext) $(bindir)/$(target_alias)-gnatbl$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatbl$(exeext); \
-	       $(INSTALL_PROGRAM) gnatbl-cross$(exeext) $(tooldir)/bin/gnatbl$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatbl$(exeext); \
+	       $(INSTALL_PROGRAM) gnatbl-cross$(exeext) $(tooldir_bin)/gnatbl$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatbl$(exeext); \
@@ -297,9 +297,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatchop$(shext); \
 	    $(INSTALL_PROGRAM) $(srcdir)/ada/gnatchop$(shext) $(bindir)/$(target_alias)-gnatchop$(shext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatchop$(shext); \
-	       $(INSTALL_PROGRAM) gnatchop$(shext) $(tooldir)/bin/gnatchop$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatchop$(shext); \
+	       $(INSTALL_PROGRAM) gnatchop$(shext) $(tooldir_bin)/gnatchop$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatchop$(shext); \
@@ -312,9 +312,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatchop$(exeext); \
 	    $(INSTALL_PROGRAM) gnatchop-cross$(exeext) $(bindir)/$(target_alias)-gnatchop$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatchop$(exeext); \
-	       $(INSTALL_PROGRAM) gnatchop-cross$(exeext) $(tooldir)/bin/gnatchop$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatchop$(exeext); \
+	       $(INSTALL_PROGRAM) gnatchop-cross$(exeext) $(tooldir_bin)/gnatchop$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatchop$(exeext); \
@@ -327,9 +327,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnat$(exeext); \
 	    $(INSTALL_PROGRAM) gnatcmd-cross$(exeext) $(bindir)/$(target_alias)-gnat$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnat$(exeext); \
-	       $(INSTALL_PROGRAM) gnatcmd-cross$(exeext) $(tooldir)/bin/gnat$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnat$(exeext); \
+	       $(INSTALL_PROGRAM) gnatcmd-cross$(exeext) $(tooldir_bin)/gnat$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnat$(exeext); \
@@ -342,9 +342,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatkr$(exeext); \
 	    $(INSTALL_PROGRAM) gnatkr-cross$(exeext) $(bindir)/$(target_alias)-gnatkr$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatkr$(exeext); \
-	       $(INSTALL_PROGRAM) gnatkr-cross$(exeext) $(tooldir)/bin/gnatkr$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatkr$(exeext); \
+	       $(INSTALL_PROGRAM) gnatkr-cross$(exeext) $(tooldir_bin)/gnatkr$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatkr$(exeext); \
@@ -357,9 +357,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatlink$(exeext); \
 	    $(INSTALL_PROGRAM) gnatlink-cross$(exeext) $(bindir)/$(target_alias)-gnatlink$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatlink$(exeext); \
-	       $(INSTALL_PROGRAM) gnatlink-cross$(exeext) $(tooldir)/bin/gnatlink$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatlink$(exeext); \
+	       $(INSTALL_PROGRAM) gnatlink-cross$(exeext) $(tooldir_bin)/gnatlink$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatlink$(exeext); \
@@ -372,9 +372,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatls$(exeext); \
 	    $(INSTALL_PROGRAM) gnatls-cross$(exeext) $(bindir)/$(target_alias)-gnatls$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatls$(exeext); \
-	       $(INSTALL_PROGRAM) gnatls-cross$(exeext) $(tooldir)/bin/gnatls$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatls$(exeext); \
+	       $(INSTALL_PROGRAM) gnatls-cross$(exeext) $(tooldir_bin)/gnatls$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatls$(exeext); \
@@ -387,9 +387,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatmake$(exeext); \
 	    $(INSTALL_PROGRAM) gnatmake-cross$(exeext) $(bindir)/$(target_alias)-gnatmake$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatmake$(exeext); \
-	       $(INSTALL_PROGRAM) gnatmake-cross$(exeext) $(tooldir)/bin/gnatmake$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatmake$(exeext); \
+	       $(INSTALL_PROGRAM) gnatmake-cross$(exeext) $(tooldir_bin)/gnatmake$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatmake$(exeext); \
@@ -413,9 +413,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatprep$(exeext); \
 	    $(INSTALL_PROGRAM) gnatprep-cross$(exeext) $(bindir)/$(target_alias)-gnatprep$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatprep$(exeext); \
-	       $(INSTALL_PROGRAM) gnatprep-cross$(exeext) $(tooldir)/bin/gnatprep$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatprep$(exeext); \
+	       $(INSTALL_PROGRAM) gnatprep-cross$(exeext) $(tooldir_bin)/gnatprep$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatprep$(exeext); \
@@ -428,9 +428,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatpsta$(exeext); \
 	    $(INSTALL_PROGRAM) gnatpsta-cross$(exeext) $(bindir)/$(target_alias)-gnatpsta$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatpsta$(exeext); \
-	       $(INSTALL_PROGRAM) gnatpsta-cross$(exeext) $(tooldir)/bin/gnatpsta$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatpsta$(exeext); \
+	       $(INSTALL_PROGRAM) gnatpsta-cross$(exeext) $(tooldir_bin)/gnatpsta$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatpsta$(exeext); \
@@ -443,9 +443,9 @@ ada.install-common:
 	  then \
 	    $(RM) $(bindir)/$(target_alias)-gnatpsys$(exeext); \
 	    $(INSTALL_PROGRAM) gnatpsys-cross$(exeext) $(bindir)/$(target_alias)-gnatpsys$(exeext); \
-	    if [ -d $(tooldir)/bin/. ] ; then \
-	       rm -f $(tooldir)/bin/gnatpsys$(exeext); \
-	       $(INSTALL_PROGRAM) gnatpsys-cross$(exeext) $(tooldir)/bin/gnatpsys$(exeext); \
+	    if [ -d $(tooldir_bin)/. ] ; then \
+	       rm -f $(tooldir_bin)/gnatpsys$(exeext); \
+	       $(INSTALL_PROGRAM) gnatpsys-cross$(exeext) $(tooldir_bin)/gnatpsys$(exeext); \
             fi; \
 	  else \
 	    $(RM) $(bindir)/gnatpsys$(exeext); \
@@ -538,19 +538,19 @@ ada.uninstall:
 	-$(RM) $(bindir)/$(target_alias)-gnatprep$(exeext)
 	-$(RM) $(bindir)/$(target_alias)-gnatpsta$(exeext)
 	-$(RM) $(bindir)/$(target_alias)-gnatpsys$(exeext)
-	-$(RM) $(tooldir)/bin/gnatbind$(exeext)
-	-$(RM) $(tooldir)/bin/gnatbl$(exeext)
-	-$(RM) $(tooldir)/bin/gnatchop$(exeext)
-	-$(RM) $(tooldir)/bin/gnatcmd$(exeext)
-	-$(RM) $(tooldir)/bin/gnatdll$(exeext)
-	-$(RM) $(tooldir)/bin/gnatkr$(exeext)
-	-$(RM) $(tooldir)/bin/gnatlink$(exeext)
-	-$(RM) $(tooldir)/bin/gnatls$(exeext)
-	-$(RM) $(tooldir)/bin/gnatmake$(exeext)
-	-$(RM) $(tooldir)/bin/gnatmem$(exeext)
-	-$(RM) $(tooldir)/bin/gnatprep$(exeext)
-	-$(RM) $(tooldir)/bin/gnatpsta$(exeext)
-	-$(RM) $(tooldir)/bin/gnatpsys$(exeext)
+	-$(RM) $(tooldir_bin)/gnatbind$(exeext)
+	-$(RM) $(tooldir_bin)/gnatbl$(exeext)
+	-$(RM) $(tooldir_bin)/gnatchop$(exeext)
+	-$(RM) $(tooldir_bin)/gnatcmd$(exeext)
+	-$(RM) $(tooldir_bin)/gnatdll$(exeext)
+	-$(RM) $(tooldir_bin)/gnatkr$(exeext)
+	-$(RM) $(tooldir_bin)/gnatlink$(exeext)
+	-$(RM) $(tooldir_bin)/gnatls$(exeext)
+	-$(RM) $(tooldir_bin)/gnatmake$(exeext)
+	-$(RM) $(tooldir_bin)/gnatmem$(exeext)
+	-$(RM) $(tooldir_bin)/gnatprep$(exeext)
+	-$(RM) $(tooldir_bin)/gnatpsta$(exeext)
+	-$(RM) $(tooldir_bin)/gnatpsys$(exeext)
 # Gnatlbr and Gnatchop are only used on VMS
 	-$(RM) $(bindir)/gnatlbr$(exeext) $(bindir)/gnatchop$(exeext)
 

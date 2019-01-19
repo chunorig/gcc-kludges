@@ -134,7 +134,9 @@ FLAGS_TO_PASS = \
 	"exec_prefix=$(exec_prefix)" \
 	"libdir=$(libdir)" \
 	"libsubdir=$(libsubdir)" \
-	"tooldir=$(tooldir)"
+	"tooldir_bin=$(tooldir_bin)"
+	"tooldir_lib=$(tooldir_lib)"
+	"tooldir_include=$(tooldir_include)"
 
 all: libobjc.la $(OBJC_BOEHM_GC)
 	: $(MAKE) ; exec $(MULTIDO) $(FLAGS_TO_PASS) multi-do DO=all

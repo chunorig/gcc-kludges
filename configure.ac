@@ -2414,8 +2414,12 @@ esac
 
 # Some systems (e.g., one of the i386-aix systems the gas testers are
 # using) don't handle "\$" correctly, so don't use it here.
-tooldir='${exec_prefix}'/${target_noncanonical}
-build_tooldir=${tooldir}
+tooldir_bin='${exec_prefix}/bin'/${target_noncanonical}
+tooldir_lib='${exec_prefix}/lib'/${target_noncanonical}
+tooldir_include='${exec_prefix}/include'/${target_noncanonical}
+build_tooldir_bin=${tooldir_bin}
+build_tooldir_lib=${tooldir_lib}
+build_tooldir_include=${tooldir_include}
 
 # Create a .gdbinit file which runs the one in srcdir
 # and tells GDB to look there for source files.
@@ -3039,7 +3043,7 @@ fi
 # being built; programs in there won't even run.
 if test "${build}" = "${host}" && test -d ${srcdir}/gcc; then
   # Search for pre-installed headers if nothing else fits.
-  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET' -B$(build_tooldir)/bin/ -B$(build_tooldir)/lib/ -isystem $(build_tooldir)/include -isystem $(build_tooldir)/sys-include'
+  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET' -B$(build_tooldir_bin)/ -B$(build_tooldir_lib)/ -isystem $(build_tooldir_include) -isystem $(build_tooldir)/sys-include'
 fi
 
 if test "x${use_gnu_ld}" = x &&
@@ -3071,8 +3075,12 @@ AC_SUBST_FILE(ospace_frag)
 # Miscellanea: directories, flags, etc.
 AC_SUBST(RPATH_ENVVAR)
 AC_SUBST(GCC_SHLIB_SUBDIR)
-AC_SUBST(tooldir)
-AC_SUBST(build_tooldir)
+AC_SUBST(tooldir_bin)
+AC_SUBST(tooldir_lib)
+AC_SUBST(tooldir_include)
+AC_SUBST(build_tooldir_bin)
+AC_SUBST(build_tooldir_lib)
+AC_SUBST(build_tooldir_include)
 AC_SUBST(CONFIGURE_GDB_TK)
 AC_SUBST(GDB_TK)
 AC_SUBST(INSTALL_GDB_TK)

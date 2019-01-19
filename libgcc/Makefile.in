@@ -98,7 +98,9 @@ FLAGS_TO_PASS = \
 	"exec_prefix=$(exec_prefix)" \
 	"libdir=$(libdir)" \
 	"libsubdir=$(libsubdir)" \
-	"tooldir=$(tooldir)"
+	"tooldir_bin=$(tooldir_bin)"
+	"tooldir_lib=$(tooldir_lib)"
+	"tooldir_include=$(tooldir_include)"
 
 # Dependencies for "all" are set later in the file.
 all: all-multi

@@ -45,7 +45,7 @@ The side links would be like this:
                 |            | X`
                 |           /|
   Original      |          / |     Clobbered
-  branch        |         A  |     branch
+  branch        |         B  |     branch
                 |        /   |
                 |       A    |
                 |      /     |

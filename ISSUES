@@ -10,3 +10,7 @@ don't affect runtime defaults used by gcc when no args given.
 This has to change; it may be that the relevant changes can be a normal patch
 picked onto the kludge branches, or it may have to be part of the scripts
 instead.
+
+Adding a little to the scripts seems sensible because default paths are defined
+as macros when compiling cpp and ultimately come from configure and make
+templates.

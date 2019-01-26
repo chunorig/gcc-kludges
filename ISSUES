@@ -11,6 +11,6 @@ This has to change; it may be that the relevant changes can be a normal patch
 picked onto the kludge branches, or it may have to be part of the scripts
 instead.
 
-Adding a little to the scripts seems sensible because default paths are defined
-as macros when compiling cpp and ultimately come from configure and make
-templates.
+A change which fixes the builtin include directories has now been applied to
+all the 3.2 releases, and the 4.9 releases will follow shortly.  Still to do is
+a fix for builtin spec strings, so the crt* objects can be found.

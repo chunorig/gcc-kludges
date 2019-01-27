@@ -66,6 +66,9 @@ const struct default_include cpp_include_defaults[]
     /* Some systems have an extra dir of include files.  */
     { SYSTEM_INCLUDE_DIR, 0, 0, 0 },
 #endif
+#ifdef SYSTEM_2_INCLUDE_DIR
+    { SYSTEM_2_INCLUDE_DIR, 0, 0, 0 },
+#endif
 #ifdef STANDARD_INCLUDE_DIR
     /* /usr/include comes dead last.  */
     { STANDARD_INCLUDE_DIR, STANDARD_INCLUDE_COMPONENT, 0, 0 },

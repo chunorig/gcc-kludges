@@ -239,6 +239,9 @@ CROSS_SYSTEM_HEADER_DIR = $(build_tooldir)/sys-include
 # autoconf sets SYSTEM_HEADER_DIR to one of the above.
 SYSTEM_HEADER_DIR = @SYSTEM_HEADER_DIR@
 
+SYSTEM_INCLUDE_DIR = $(SYSTEM_HEADER_DIR)
+SYSTEM_2_INCLUDE_DIR = $(SYSTEM_INCLUDE_DIR)/$(target_alias)
+
 # Control whether to run fixproto and fixincludes.
 STMP_FIXPROTO = @STMP_FIXPROTO@
 STMP_FIXINC = @STMP_FIXINC@
@@ -1965,7 +1968,9 @@ PREPROCESSOR_DEFINES = \
   -DGPLUSPLUS_BACKWARD_INCLUDE_DIR=\"$(gcc_gxx_include_dir)/backward\" \
   -DLOCAL_INCLUDE_DIR=\"$(local_includedir)\" \
   -DCROSS_INCLUDE_DIR=\"$(gcc_tooldir)/sys-include\" \
-  -DTOOL_INCLUDE_DIR=\"$(gcc_tooldir)/include\"
+  -DTOOL_INCLUDE_DIR=\"$(gcc_tooldir)/include\" \
+  -DSYSTEM_INCLUDE_DIR=\"$(SYSTEM_INCLUDE_DIR)\" \
+  -DSYSTEM_2_INCLUDE_DIR=\"$(SYSTEM_2_INCLUDE_DIR)\"
 
 LIBCPP_OBJS =	cpplib.o cpplex.o cppmacro.o cppexp.o cppfiles.o \
 		cpphash.o cpperror.o cppinit.o cppdefault.o \

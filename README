@@ -21,6 +21,14 @@ At least on my machine, these patches allow gcc to be bootstrapped with support
 for C only, but I can't guarantee that "make check-gcc" will work.
 
 
+====
+Tags
+====
+
+One day I hope to add a tag to a revision on gcc-kludges-meta called
+"kludge-actually-useful-today" or something like that.
+
+
 ==========
 The scheme
 ==========

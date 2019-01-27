@@ -8,10 +8,9 @@ passed to intermediate builds of gcc during bootstrap, so that can work, but
 don't affect runtime defaults used by gcc when no args given.
 
 A change which fixes the builtin include directories has now been applied to
-all the 3.2 releases (but it needs to be done slightly differently), and the
-4.9 releases will follow shortly.
+all the 3.2 releases, and the 4.9 releases will follow shortly.
 
 Still to do is a fix for default lib search paths, so the crt* objects can be
 found.  A fix has been tested on 3.2.3 locally, which allows crt*.o to be found
 but exposes a new problem: the linker doesn't like crtend.o and crtendS.o
-having non-empty .eh_frame sections.
+having non-empty .eh_frame sections, which they have.

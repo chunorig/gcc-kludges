@@ -1,0 +1,63 @@
+These are the configure options used for most of the builds and tests.
+
+Based on output of current debian's `gcc -dump-specs` but with some things
+removed.  Had to remove the --with-abi option for some older builds.  In
+older versions MAKEINFO=HaHaNope on the commandline is treated as host type.
+So trying it as env var now.
+
+The below was part of a shell script which was passed the source directory as
+its only argument.
+
+########
+
+# Keep this in for modern linux because it is the right thing to do if libc and
+# kernel not old.  (Newer revisions have magic to set the right default)
+LINUX_FUTEX=--enable-linux-futex
+
+# --with-tune=generic was in config of standard debian gcc (recent)
+# but older ones don't like it
+#${TUNE}=--with-tune=generic
+
+# Set GCC_MAINTAINER_MODE to a non-empty value, and we'll pass
+# --enable-maintainer-mode.
+
+#CHECK="--enable-checking=release"
+
+[ $# -eq 1 ] || exit 1
+MAKEINFO=HaHaNope \
+"$1/configure" \
+-v \
+--enable-languages=c \
+--prefix=/usr \
+${GCC_MAINTAINER_MODE:+--enable-maintainer-mode} \
+${LINUX_FUTEX} \
+${CHECK} \
+--disable-doc \
+--program-suffix=-3 \
+--program-prefix=x86_64-linux-gnu- \
+--enable-shared \
+--enable-linker-build-id \
+--libexecdir=/usr/lib \
+--without-included-gettext \
+--enable-threads=posix \
+--libdir=/usr/lib \
+--enable-nls \
+--with-sysroot=/ \
+--enable-clocale=gnu \
+--enable-gnu-unique-object \
+--disable-vtable-verify \
+--enable-libmpx \
+--enable-plugin \
+--enable-default-pie \
+--with-system-zlib \
+--disable-browser-plugin \
+--with-ecj-jar=/usr/share/java/eclipse-ecj.jar \
+--with-target-system-zlib \
+--enable-objc-gc=auto \
+--enable-multiarch \
+--with-arch-32=i686 \
+--disable-multilib \
+${TUNE} \
+--build=x86_64-linux-gnu \
+--host=x86_64-linux-gnu \
+--target=x86_64-linux-gnu

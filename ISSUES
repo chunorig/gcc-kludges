@@ -2,7 +2,6 @@
 Major repo-wide problems are listed here.
 =========================================
 
-
 The changes made by 02add_lib_dir.sh, 03swap_search_dirs.sh only affect options
 passed to intermediate builds of gcc during bootstrap, so that can work, but
 don't affect runtime defaults used by gcc when no args given.
@@ -10,7 +9,7 @@ don't affect runtime defaults used by gcc when no args given.
 A change which fixes the builtin include directories has now been applied to
 all the 3.2 releases, and the 4.9 releases will follow shortly.
 
-Still to do is a fix for default lib search paths, so the crt* objects can be
-found.  A fix has been tested on 3.2.3 locally, which allows crt*.o to be found
-but exposes a new problem: the linker doesn't like crtend.o and crtendS.o
-having non-empty .eh_frame sections, which they have.
+The 3.2 releases can now automatically find the correct target crt*.o objects
+provided by the target system.  They also have a backported fix from 2007 which
+causes the newly build crtend.o and crtendS.o to have no entries in .eh_frame
+section, which finally cuts out the vast bulk of the `make check-gcc` errors.

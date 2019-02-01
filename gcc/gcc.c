@@ -5957,25 +5957,58 @@ main (argc, argv)
 	 as a unit.  If GCC_EXEC_PREFIX is defined, base
 	 standard_startfile_prefix on that as well.  */
       if (IS_ABSOLUTE_PATHNAME (standard_startfile_prefix))
-	add_prefix (&startfile_prefixes, standard_startfile_prefix, "BINUTILS",
+	{
+	  add_prefix (&startfile_prefixes, standard_startfile_prefix, "BINUTILS",
 		    PREFIX_PRIORITY_LAST, 0, NULL, 1);
+	  /* kludge a suffix onto it too. */
+	  add_prefix (&startfile_prefixes,
+		    concat (standard_startfile_prefix, just_machine_suffix, NULL),
+		    "BINUTILS", PREFIX_PRIORITY_LAST, 0, NULL, 1);
+	}
       else
 	{
 	  if (gcc_exec_prefix)
-	    add_prefix (&startfile_prefixes,
+	    {
+	      add_prefix (&startfile_prefixes,
 			concat (gcc_exec_prefix, machine_suffix,
 				standard_startfile_prefix, NULL),
 			NULL, PREFIX_PRIORITY_LAST, 0, NULL, 1);
+	      /*
+	       * ... and the kludge (I think exec-prefix, machine-suffix,
+	       * relative-prefix typically takes you to $(libdir))
+	       */
+	      add_prefix (&startfile_prefixes,
+			concat (gcc_exec_prefix, machine_suffix,
+				standard_startfile_prefix, just_machine_suffix,
+				NULL),
+			NULL, PREFIX_PRIORITY_LAST, 0, NULL, 1);
+	    }
 	  add_prefix (&startfile_prefixes,
 		      concat (standard_exec_prefix,
 			      machine_suffix,
 			      standard_startfile_prefix, NULL),
+		      NULL, PREFIX_PRIORITY_LAST, 0, NULL, 1);
+	  /* Kludgey kludgey! */
+	  add_prefix (&startfile_prefixes,
+		      concat (standard_exec_prefix,
+			      machine_suffix,
+			      standard_startfile_prefix, just_machine_suffix,
+			      NULL),
 		      NULL, PREFIX_PRIORITY_LAST, 0, NULL, 1);
 	}
 
       add_prefix (&startfile_prefixes, standard_startfile_prefix_1,
 		  "BINUTILS", PREFIX_PRIORITY_LAST, 0, NULL, 1);
       add_prefix (&startfile_prefixes, standard_startfile_prefix_2,
+		  "BINUTILS", PREFIX_PRIORITY_LAST, 0, NULL, 1);
+      /* Kludge a suffix onto these two as well. */
+      add_prefix (&startfile_prefixes,
+		  concat (standard_startfile_prefix_1,
+		  just_machine_suffix, NULL),
+		  "BINUTILS", PREFIX_PRIORITY_LAST, 0, NULL, 1);
+      add_prefix (&startfile_prefixes,
+		  concat (standard_startfile_prefix_2,
+		  just_machine_suffix, NULL),
 		  "BINUTILS", PREFIX_PRIORITY_LAST, 0, NULL, 1);
 #if 0 /* Can cause surprises, and one can use -B./ instead.  */
       add_prefix (&startfile_prefixes, "./", NULL,

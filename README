@@ -34,7 +34,9 @@ The scheme
 ==========
 
 Each release tag on the 4.9 branch and the 3.2 branch is the root of a little
-branch called kludge-*.
+branch called kludge-*.  Although 4.9 was only used as a starting point to work
+backwards toward 3.2, so it is not the main focus.  One day there may be 3.1
+and even 2.x kludges, but 4.9 might be left how it is as a relic.
 
 So gcc-${REV}-release is the root of a small chain of commits leading to
 kludge-${REV}.  There is also a kludge-${REV}-volatile; more on that later.
@@ -47,7 +49,7 @@ compiler and not other languages.
 The difference between kludge-${REV} and kludge-${REV}-volatile is that if I
 push changes to the kludge branches, kludge-${REV}-volatile might be a remade
 branch while kludge-${REV} will only ever be modified by adding commits to the
-tip.
+tip (i.e. fast-forward updates only).
 
 Both branches will contain the same actual tree at the tip anyway.
 

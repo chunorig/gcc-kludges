@@ -26,10 +26,6 @@ Purpose of this project
 
 To make it easier to build old versions of gcc.  No guarantees of course!
 
-There is a planned update that will create an entire parallel history
-equivalent to all of the commits between the ones affected here.  But for now,
-there are just a few little side branches.
-
 At least on my machine, these patches allow gcc to be bootstrapped with support
 for C only, but I can't guarantee that "make check-gcc" will work.
 
@@ -38,8 +34,8 @@ for C only, but I can't guarantee that "make check-gcc" will work.
 The scheme
 ==========
 
-Each release tag on the 4.9 branch and the 3.2 branch is the root of a little
-branch called kludge-*.
+Some of the release tags, for example gcc-3_2_3-release, are each the root of a
+little branch called kludge-*.
 
 So gcc-${REV}-release is the root of a small chain of commits leading to
 kludge-${REV}.  There is also a kludge-${REV}-volatile; more on that later.

@@ -13,3 +13,10 @@ The 3.2 releases can now automatically find the correct target crt*.o objects
 provided by the target system.  They also have a backported fix from 2007 which
 causes the newly build crtend.o and crtendS.o to have no entries in .eh_frame
 section, which finally cuts out the vast bulk of the `make check-gcc` errors.
+
+I suspect, but have not confirmed, that the change which fixes the
+system-headers' assumption that any GCC compiling them is modern and therefore
+has a builtin stpcpy, should be moved into the fixincludes.
+
+The reason for this is it will rear its head again when compiling anything with
+the newly installed old GCC.

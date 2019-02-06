@@ -28,7 +28,8 @@ MAKEINFO=HaHaNope \
 "$1/configure" \
 -v \
 --enable-languages=c \
---prefix=/usr \
+--prefix=${PREFIX:-/usr} \
+${LOCAL_PREFIX:+--with-local-prefix=$LOCAL_PREFIX} \
 ${GCC_MAINTAINER_MODE:+--enable-maintainer-mode} \
 ${LINUX_FUTEX} \
 ${CHECK} \
@@ -40,7 +41,7 @@ ${CHECK} \
 --libexecdir=/usr/lib \
 --without-included-gettext \
 --enable-threads=posix \
---libdir=/usr/lib \
+${LIBDIR:+--libdir=$LIBDIR} \
 --enable-nls \
 --with-sysroot=/ \
 --enable-clocale=gnu \

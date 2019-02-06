@@ -38,7 +38,7 @@ ${CHECK} \
 --program-prefix=${PROGRAM_PREFIX} \
 --enable-shared \
 --enable-linker-build-id \
---libexecdir=/usr/lib \
+${LIBEXECDIR:+--libexecdir=$LIBEXECDIR} \
 --without-included-gettext \
 --enable-threads=posix \
 ${LIBDIR:+--libdir=$LIBDIR} \

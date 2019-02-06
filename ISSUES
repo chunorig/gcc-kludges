@@ -11,8 +11,20 @@ all the 3.2 releases, and the 4.9 releases will follow shortly.
 
 The 3.2 releases can now automatically find the correct target crt*.o objects
 provided by the target system.  They also have a backported fix from 2007 which
-causes the newly build crtend.o and crtendS.o to have no entries in .eh_frame
+causes the newly built crtend.o and crtendS.o to have no entries in .eh_frame
 section, which finally cuts out the vast bulk of the `make check-gcc` errors.
+
+-----
+
+Using the configure options in configure-opts, building and installing the
+kludged gcc 3.2.3 works in a single make invocation e.g. make bootstrap
+install.  make bootstrap then a separate make install tries to rebuild cc1,
+incorrectly.
+
+This might just be me not using gcc's configure and make right, but vanilla
+(non-kludged) 6.3.0 doesn't have this problem.
+
+-----
 
 I suspect, but have not confirmed, that the change which fixes the
 system-headers' assumption that any GCC compiling them is modern and therefore
@@ -20,3 +32,6 @@ has a builtin stpcpy, should be moved into the fixincludes.
 
 The reason for this is it will rear its head again when compiling anything with
 the newly installed old GCC.
+
+So far a small test program using stpcpy seems to work using an installed
+kludged 3.2.3.

@@ -19,19 +19,27 @@ section, which finally cuts out the vast bulk of the `make check-gcc` errors.
 Using the configure options in configure-opts, building and installing the
 kludged gcc 3.2.3 works in a single make invocation e.g. make bootstrap
 install.  make bootstrap then a separate make install tries to rebuild cc1,
-incorrectly.
+and gets it wrong.
 
 This might just be me not using gcc's configure and make right, but vanilla
 (non-kludged) 6.3.0 doesn't have this problem.
 
 -----
 
-I suspect, but have not confirmed, that the change which fixes the
-system-headers' assumption that any GCC compiling them is modern and therefore
-has a builtin stpcpy, should be moved into the fixincludes.
+Of the 26 unexpected fails remaining on 3.2.3, the first is
+gcc.c-torture/compile/20010227-1.c.  I freely admit that I don't know what the
+hell I'm doing, but bisecting finds git commit:
 
-The reason for this is it will rear its head again when compiling anything with
-the newly installed old GCC.
+26a7cedebb71587b1391f81842c9c86d4c07c061
 
-So far a small test program using stpcpy seems to work using an installed
-kludged 3.2.3.
+git-svn-id: svn+ssh://gcc.gnu.org/svn/gcc/trunk@58774
+138bc75d-0d04-0410-961f-82ee72b054a4
+
+The changes introduced by this commit seem extremely relevant to the problem,
+which is surprising.  The failure is not an expected failure, so presumably
+back in the day it passed.  If it passed then and failed now I would expect the
+more recent failure of the test to be a weird subtle effect of the modern build
+environment through the stages of bootstrap.  Instead we see a change which
+appears to address exactly the thing that happened, which I would have only
+expected if the test was failing originally.  Like I said, I don't know what
+I'm doing so I'm probably just being dumb here.

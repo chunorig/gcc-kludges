@@ -43,3 +43,8 @@ environment through the stages of bootstrap.  Instead we see a change which
 appears to address exactly the thing that happened, which I would have only
 expected if the test was failing originally.  Like I said, I don't know what
 I'm doing so I'm probably just being dumb here.
+
+Decided to patch it anyway since it probably only changes behaviour from "die"
+to something else, rather than changing existing code generation.
+
+Eliminated 5 fails on the 3.2 branch.  21 to go on 3.2.3.

@@ -48,14 +48,3 @@ Decided to patch it anyway since it probably only changes behaviour from "die"
 to something else, rather than changing existing code generation.
 
 Eliminated 5 fails on the 3.2 branch.  21 to go on 3.2.3.
-
------
-
-Next task is to backport this:
-
-commit 9039f3fdae4fe3b4686e1e8635be51911d512d9a
-( git-svn-id: svn+ssh://gcc.gnu.org/svn/gcc/trunk@55586
-138bc75d-0d04-0410-961f-82ee72b054a4 )
-
-To get test 20020227 working, which was failing for a less directly relevant
-reason so I'm not as perplexed by it.

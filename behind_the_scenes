@@ -67,7 +67,8 @@ the directory-mangling scripts' commits, and X' is a commit with Author
 name,date,email and Commit Message taken from X.
 
 (These mangling scripts are no longer necessary on the kludged 3.2 releases and
-will be removed.)
+have been removed.  4.9 kludges are still awaiting some patches for this
+though.)
 
 A shell script exists that actually does this.  It can take more than a day on
 my machine, which is not exactly a workhorse.

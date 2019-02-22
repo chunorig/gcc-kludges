@@ -151,7 +151,7 @@ c++.generated-manpages:
 c++.install-normal:
 
 # Install the driver program as $(target)-g++
-# and also as either g++ (if native) or $(tooldir_bin)/g++.
+# and also as either g++ (if native) or $(tooldir)/bin/g++.
 c++.install-common: installdirs
 	-if [ -f cc1plus$(exeext) ] ; then \
 	  if [ -f g++-cross$(exeext) ] ; then \
@@ -161,11 +161,11 @@ c++.install-common: installdirs
 	    rm -f $(DESTDIR)$(bindir)/$(CXX_CROSS_NAME)$(exeext); \
 	    ( cd $(DESTDIR)$(bindir) && \
 	      $(LN) $(GXX_CROSS_NAME)$(exeext) $(CXX_CROSS_NAME)$(exeext) ); \
-	    if [ -d $(DESTDIR)$(gcc_tooldir_bin)/. ] ; then \
-	      rm -f $(DESTDIR)$(gcc_tooldir_bin)/g++$(exeext); \
-	      $(INSTALL_PROGRAM) g++-cross$(exeext) $(DESTDIR)$(gcc_tooldir_bin)/g++$(exeext); \
-	      rm -f $(DESTDIR)$(gcc_tooldir_bin)/c++$(exeext); \
-	      ( cd $(DESTDIR)$(gcc_tooldir_bin) && \
+	    if [ -d $(DESTDIR)$(gcc_tooldir)/bin/. ] ; then \
+	      rm -f $(DESTDIR)$(gcc_tooldir)/bin/g++$(exeext); \
+	      $(INSTALL_PROGRAM) g++-cross$(exeext) $(DESTDIR)$(gcc_tooldir)/bin/g++$(exeext); \
+	      rm -f $(DESTDIR)$(gcc_tooldir)/bin/c++$(exeext); \
+	      ( cd $(DESTDIR)$(gcc_tooldir)/bin && \
 	        $(LN) g++$(exeext) c++$(exeext) ); \
 	    else true; fi; \
 	  else \

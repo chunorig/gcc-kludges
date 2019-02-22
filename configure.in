@@ -1517,7 +1517,7 @@ esac
 # being built; programs in there won't even run.
 if test "${build}" = "${host}" && test -d ${topsrcdir}/gcc; then
   # Search for pre-installed headers if nothing else fits.
-  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET' -B$(build_tooldir_bin)/ -B$(build_tooldir_lib)/ -isystem $(build_tooldir_include)'
+  FLAGS_FOR_TARGET=$FLAGS_FOR_TARGET' -B$(build_tooldir)/bin/ -B$(build_tooldir)/lib/ -isystem $(build_tooldir)/include'
 fi
 
 if test "x${use_gnu_ld}" = x && test "x${with_gnu_ld}" != xno &&

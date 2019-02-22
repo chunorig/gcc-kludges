@@ -2464,9 +2464,7 @@ changequote(<<, >>)dnl
     gcc_tooldir="\$(libsubdir)/\$(unlibsubdir)/\`echo \$(exec_prefix) | sed -e 's|^\$(prefix)||' -e 's|/\$(dollar)||' -e 's|^[^/]|/|' -e 's|/[^/]*|../|g'\`\$(target_alias)"
 changequote([, ])dnl
 fi
-AC_SUBST(gcc_tooldir_bin)
-AC_SUBST(gcc_tooldir_lib)
-AC_SUBST(gcc_tooldir_include)
+AC_SUBST(gcc_tooldir)
 AC_SUBST(dollar)
 
 # Find a directory in which to install a shared libgcc.
@@ -2482,7 +2480,7 @@ slibdir="$with_slibdir",
 if test "${enable_version_specific_runtime_libs+set}" = set; then
   slibdir='$(libsubdir)'
 elif test "$host" != "$target"; then
-  slibdir='$(build_tooldir_lib)'
+  slibdir='$(build_tooldir)/lib'
 else
   slibdir='$(libdir)'
 fi)

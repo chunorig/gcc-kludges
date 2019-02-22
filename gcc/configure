@@ -8248,7 +8248,7 @@ else
   if test "${enable_version_specific_runtime_libs+set}" = set; then
   slibdir='$(libsubdir)'
 elif test "$host" != "$target"; then
-  slibdir='$(build_tooldir_lib)'
+  slibdir='$(build_tooldir)/lib'
 else
   slibdir='$(libdir)'
 fi
@@ -8583,9 +8583,7 @@ s%@MAINT@%$MAINT%g
 s%@build_canonical@%$build_canonical%g
 s%@host_canonical@%$host_canonical%g
 s%@target_subdir@%$target_subdir%g
-s%@gcc_tooldir_bin@%$gcc_tooldir_bin%g
-s%@gcc_tooldir_lib@%$gcc_tooldir_lib%g
-s%@gcc_tooldir_include@%$gcc_tooldir_include%g
+s%@gcc_tooldir@%$gcc_tooldir%g
 s%@dollar@%$dollar%g
 s%@slibdir@%$slibdir%g
 s%@objdir@%$objdir%g

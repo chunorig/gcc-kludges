@@ -788,9 +788,7 @@ fi
 
 # Some systems (e.g., one of the i386-aix systems the gas testers are
 # using) don't handle "\$" correctly, so don't use it here.
-tooldir_bin='$(exec_prefix)/bin'/${target_alias}
-tooldir_lib='$(exec_prefix)/lib'/${target_alias}
-tooldir_include='$(exec_prefix)/include'/${target_alias}
+tooldir='$(exec_prefix)'/${target_alias}
 
 if [ "${host_alias}" != "${target_alias}" ] ; then
     if [ "${program_prefixoption}" = "" ] ; then
@@ -1432,12 +1430,8 @@ EOF
                     -e "s:^program_prefix[ 	]*=.*$:program_prefix = ${program_prefix}:" \
                     -e "s:^program_suffix[ 	]*=.*$:program_suffix = ${program_suffix}:" \
                     -e "s:^program_transform_name[ 	]*=.*$:program_transform_name = ${program_transform_name}:" \
-                    -e "s|^tooldir_bin[ 	]*=.*$|tooldir_bin = ${tooldir_bin}|" \
-                    -e "s|^tooldir_lib[ 	]*=.*$|tooldir_lib = ${tooldir_lib}|" \
-                    -e "s|^tooldir_include[ 	]*=.*$|tooldir_include = ${tooldir_include}|" \
-                    -e "s|^build_tooldir_bin[ 	]*=.*$|build_tooldir_bin = ${tooldir_bin}|" \
-                    -e "s|^build_tooldir_lib[ 	]*=.*$|build_tooldir_lib = ${tooldir_lib}|" \
-                    -e "s|^build_tooldir_include[ 	]*=.*$|build_tooldir_include = ${tooldir_include}|" \
+                    -e "s|^tooldir[ 	]*=.*$|tooldir = ${tooldir}|" \
+                    -e "s|^build_tooldir[ 	]*=.*$|build_tooldir = ${tooldir}|" \
 		    -e "s:^DEFAULT_YACC[	 ]*=.*$:DEFAULT_YACC = ${DEFAULT_YACC}:" \
 		    -e "s:^DEFAULT_LEX[	 ]*=.*$:DEFAULT_LEX = ${DEFAULT_LEX}:" \
 		    -e "s:^DEFAULT_M4[  ]*=.*$:DEFAULT_M4 = ${DEFAULT_M4}:" \

@@ -48,3 +48,9 @@ Decided to patch it anyway since it probably only changes behaviour from "die"
 to something else, rather than changing existing code generation.
 
 Eliminated 5 fails on the 3.2 branch.  21 to go on 3.2.3.
+
+-----
+
+Tests of the 3.2.3 release with latest kludges (including one new one) only
+have the same 21 fails without using the mangling scripts at all, so they are
+about to be removed.

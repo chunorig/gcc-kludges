@@ -1,3 +1,6 @@
+This is only of interest for historical reasons.  The latest kludges have
+eliminated the need for path mangling to be applied to config and make files.
+
 Some of the commits in the kludge branches are labelled
 
 02add_lib_dir.sh auto-patch

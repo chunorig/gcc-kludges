@@ -1,6 +1,7 @@
 #!/bin/sh
 # mangle_paths by chuno (Chief Unoriginal)
-# Free to use however.
+#
+# THIS IS NO LONGER OF ANY USE TO ANYONE.
 #
 # This does what the original 02add_lib_dir.sh and 03swap_search_dirs.sh did.
 # (see "path_mangling")

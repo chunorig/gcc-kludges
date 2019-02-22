@@ -2,6 +2,8 @@
 # mangle_paths by chuno (Chief Unoriginal)
 # Free to use however.
 #
+# THIS IS NO LONGER OF ANY USE TO ANYONE.
+#
 # no arguments
 # This has the effect on working dir of 02add_lib_dir.sh and
 # 03swap_search_dirs.sh, but without optionally committing each automatically.

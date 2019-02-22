@@ -92,9 +92,7 @@ FLAGS_TO_PASS = \
 	"exec_prefix=$(exec_prefix)" \
 	"libdir=$(libdir)" \
 	"libsubdir=$(libsubdir)" \
-	"tooldir_bin=$(tooldir_bin)"
-	"tooldir_lib=$(tooldir_lib)"
-	"tooldir_include=$(tooldir_include)"
+	"tooldir=$(tooldir)"
 
 # Subdirectories to recurse into. We need to override this during cleaning
 SUBDIRS = testsuite
@@ -245,9 +243,9 @@ install_to_libdir: all
 	@$(MULTIDO) $(FLAGS_TO_PASS) multi-do DO=install
 
 install_to_tooldir: all
-	$(INSTALL_DATA) $(TARGETLIB) $(tooldir_lib)$(MULTISUBDIR)/$(TARGETLIB)n
-	( cd $(tooldir_lib)$(MULTISUBDIR) ; $(RANLIB) $(TARGETLIB)n )
-	mv -f $(tooldir_lib)$(MULTISUBDIR)/$(TARGETLIB)n $(tooldir_lib)$(MULTISUBDIR)/$(TARGETLIB)
+	$(INSTALL_DATA) $(TARGETLIB) $(tooldir)/lib$(MULTISUBDIR)/$(TARGETLIB)n
+	( cd $(tooldir)/lib$(MULTISUBDIR) ; $(RANLIB) $(TARGETLIB)n )
+	mv -f $(tooldir)/lib$(MULTISUBDIR)/$(TARGETLIB)n $(tooldir)/lib$(MULTISUBDIR)/$(TARGETLIB)
 	@$(MULTIDO) $(FLAGS_TO_PASS) multi-do DO=install
 
 # needed-list is used by libstdc++.  NEEDED is the list of functions

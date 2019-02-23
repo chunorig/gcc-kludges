@@ -18,7 +18,10 @@ equivalent to all of the commits between the ones affected here.  But for now,
 there are just a few little side branches.
 
 At least on my machine, these patches allow gcc to be bootstrapped with support
-for C only, but I can't guarantee that "make check-gcc" will work.
+for C only, but I can't guarantee that "make check-gcc" will work on all
+releases yet.  It works for 4.9.4 but 4.9 was only really used as a starting
+point to work back to the 3.2 branch.  check-gcc on 3.2.3 is down to 21
+unexpected fails right now.
 
 
 ====

@@ -2,20 +2,6 @@
 Major repo-wide problems are listed here.
 =========================================
 
-The changes made by 02add_lib_dir.sh, 03swap_search_dirs.sh only affect options
-passed to intermediate builds of gcc during bootstrap, so that can work, but
-don't affect runtime defaults used by gcc when no args given.
-
-A change which fixes the builtin include directories has now been applied to
-all the 3.2 releases, and the 4.9 releases will follow shortly.
-
-The 3.2 releases can now automatically find the correct target crt*.o objects
-provided by the target system.  They also have a backported fix from 2007 which
-causes the newly built crtend.o and crtendS.o to have no entries in .eh_frame
-section, which finally cuts out the vast bulk of the `make check-gcc` errors.
-
------
-
 Using the configure options in configure-opts, building and installing the
 kludged gcc 3.2.3 works in a single make invocation e.g. make bootstrap
 install.  make bootstrap then a separate make install tries to rebuild cc1,
@@ -26,29 +12,5 @@ This might just be me not using gcc's configure and make right, but vanilla
 
 -----
 
-Of the 26 unexpected fails remaining on 3.2.3, the first is
-gcc.c-torture/compile/20010227-1.c.  I freely admit that I don't know what the
-hell I'm doing, but bisecting finds git commit:
-
-26a7cedebb71587b1391f81842c9c86d4c07c061
-
-git-svn-id: svn+ssh://gcc.gnu.org/svn/gcc/trunk@58774
-138bc75d-0d04-0410-961f-82ee72b054a4
-
-The changes introduced by this commit seem extremely relevant to the problem,
-which is surprising.  The failure is not an expected failure, so presumably
-back in the day it passed.  If it passed then and failed now I would expect the
-more recent failure of the test to be a weird subtle effect of the modern build
-environment through the stages of bootstrap.  Instead we see a change which
-appears to address exactly the thing that happened, which I would have only
-expected if the test was failing originally.  Like I said, I don't know what
-I'm doing so I'm probably just being dumb here.
-
-Decided to patch it anyway since it probably only changes behaviour from "die"
-to something else, rather than changing existing code generation.
-
-Eliminated 5 fails on the 3.2 branch.  21 to go on 3.2.3.
-
------
-
-Some fixes have still not been applied to the 4.9 branch even though they are known.
+There are still 21 unexpected fails from make check-gcc on kludged 3.2.3
+I expect to be backporting some things from trunk soon.

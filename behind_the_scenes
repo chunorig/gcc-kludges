@@ -66,9 +66,7 @@ The "f"s are all the commits up to fixbuild-NN (e.g. fixbuild-21), A and B are
 the directory-mangling scripts' commits, and X' is a commit with Author
 name,date,email and Commit Message taken from X.
 
-(These mangling scripts are no longer necessary on the kludged 3.2 releases and
-have been removed.  4.9 kludges are still awaiting some patches for this
-though.)
+(These mangling scripts are no longer necessary and have been removed.)
 
 A shell script exists that actually does this.  It can take more than a day on
 my machine, which is not exactly a workhorse.

@@ -100,12 +100,8 @@ MAINTAINER_MODE_TRUE = @MAINTAINER_MODE_TRUE@
 # The gcc driver likes to know the arguments it was configured with.
 TOPLEVEL_CONFIGURE_ARGUMENTS=@TOPLEVEL_CONFIGURE_ARGUMENTS@
 
-tooldir_bin = @tooldir_bin@
-tooldir_lib = @tooldir_lib@
-tooldir_include = @tooldir_include@
-build_tooldir_bin = @build_tooldir_bin@
-build_tooldir_lib = @build_tooldir_lib@
-build_tooldir_include = @build_tooldir_include@
+tooldir = @tooldir@
+build_tooldir = @build_tooldir@
 
 # This is the name of the environment variable used for the path to
 # the libraries.
@@ -243,7 +239,7 @@ POSTSTAGE1_CXX_EXPORT = \
 # Override the above if we're bootstrapping C++.
 POSTSTAGE1_CXX_EXPORT = \
 	CXX="$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/prev-gcc/xg++$(exeext) \
-	  -B$$r/$(HOST_SUBDIR)/prev-gcc/ -B$(build_tooldir_bin)/ -isystem $(build_tooldir_include)/ -B$(build_tooldir_lib)/ -nostdinc++ \
+	  -B$$r/$(HOST_SUBDIR)/prev-gcc/ -B$(build_tooldir)/bin/ -nostdinc++ \
 	  -B$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/src/.libs \
 	  -B$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/libsupc++/.libs \
 	  `if $(LEAN); then echo ' -isystem '; else echo ' -I'; fi`$$r/prev-$(TARGET_SUBDIR)/libstdc++-v3/include/$(TARGET_SUBDIR) \
@@ -259,7 +255,7 @@ POSTSTAGE1_CXX_EXPORT = \
 POSTSTAGE1_HOST_EXPORTS = \
 	$(HOST_EXPORTS) \
 	CC="$(STAGE_CC_WRAPPER) $$r/$(HOST_SUBDIR)/prev-gcc/xgcc$(exeext) \
-	  -B$$r/$(HOST_SUBDIR)/prev-gcc/ -B$(build_tooldir_bin)/ -isystem $(build_tooldir_include)/ -B$(build_tooldir_lib)/ \
+	  -B$$r/$(HOST_SUBDIR)/prev-gcc/ -B$(build_tooldir)/bin/ \
 	  $(XGCC_FLAGS_FOR_TARGET) $$TFLAGS"; export CC; \
 	CC_FOR_BUILD="$$CC"; export CC_FOR_BUILD; \
 	$(POSTSTAGE1_CXX_EXPORT) \

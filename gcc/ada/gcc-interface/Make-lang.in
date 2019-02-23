@@ -814,8 +814,8 @@ ada.uninstall:
 	  install_name=`echo $$tool|sed '$(program_transform_name)'`$(exeext); \
 	  -$(RM) $(DESTDIR)$(bindir)/$$install_name; \
 	done
-	-$(RM) $(DESTDIR)$(tooldir_bin)/gnatdll$(exeext)
-	-$(RM) $(DESTDIR)$(tooldir_bin)/vxaddr2line$(exeext)
+	-$(RM) $(DESTDIR)$(tooldir)/bin/gnatdll$(exeext)
+	-$(RM) $(DESTDIR)$(tooldir)/bin/vxaddr2line$(exeext)
 
 # Clean hooks:
 # A lot of the ancillary files are deleted by the main makefile.

@@ -670,9 +670,7 @@ all_compilers
 srcdir
 subdirs
 dollar
-gcc_tooldir_bin
-gcc_tooldir_lib
-gcc_tooldir_include
+gcc_tooldir
 enable_lto
 DO_LINK_MUTEX
 MAINT

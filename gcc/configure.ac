@@ -5356,9 +5356,7 @@ case "$CFLAGS" in
 esac
 
 gcc_tooldir='$(libsubdir)/$(libsubdir_to_prefix)$(target_noncanonical)'
-AC_SUBST(gcc_tooldir_bin)
-AC_SUBST(gcc_tooldir_lib)
-AC_SUBST(gcc_tooldir_include)
+AC_SUBST(gcc_tooldir)
 AC_SUBST(dollar)
 
 # Find a directory in which to install a shared libgcc.

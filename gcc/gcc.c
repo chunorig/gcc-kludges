@@ -6575,9 +6575,17 @@ main (int argc, char **argv)
          If the prefix is relative, only search it for native compilers;
          otherwise we will search a directory containing host libraries.  */
       if (IS_ABSOLUTE_PATH (standard_startfile_prefix))
+	{
 	add_sysrooted_prefix (&startfile_prefixes,
 			      standard_startfile_prefix, "BINUTILS",
 			      PREFIX_PRIORITY_LAST, 0, 1);
+	/* kludge a suffix onto it too. */
+	add_sysrooted_prefix (&startfile_prefixes,
+			      concat(standard_startfile_prefix,
+			             just_machine_suffix, NULL),
+			      "BINUTILS",
+			      PREFIX_PRIORITY_LAST, 0, 1);
+	}
       else if (*cross_compile == '0')
 	{
 	  add_prefix (&startfile_prefixes,
@@ -6591,13 +6599,29 @@ main (int argc, char **argv)
       /* Sysrooted prefixes are relocated because target_system_root is
 	 also relocated by gcc_exec_prefix.  */
       if (*standard_startfile_prefix_1)
+	{
  	add_sysrooted_prefix (&startfile_prefixes,
 			      standard_startfile_prefix_1, "BINUTILS",
 			      PREFIX_PRIORITY_LAST, 0, 1);
+	/* Kludgey kludgey! */
+	add_sysrooted_prefix (&startfile_prefixes,
+			      concat(standard_startfile_prefix_1,
+			             just_machine_suffix, NULL),
+			      "BINUTILS",
+			      PREFIX_PRIORITY_LAST, 0, 1);
+	}
       if (*standard_startfile_prefix_2)
+	{
 	add_sysrooted_prefix (&startfile_prefixes,
 			      standard_startfile_prefix_2, "BINUTILS",
 			      PREFIX_PRIORITY_LAST, 0, 1);
+	/* Kludgey kludgey! */
+	add_sysrooted_prefix (&startfile_prefixes,
+			      concat(standard_startfile_prefix_2,
+			             just_machine_suffix, NULL),
+			      "BINUTILS",
+			      PREFIX_PRIORITY_LAST, 0, 1);
+	}
     }
 
   /* Process any user specified specs in the order given on the command

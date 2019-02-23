@@ -191,9 +191,7 @@ FLAGS_TO_PASS = \
 	"exec_prefix=$(exec_prefix)" \
 	"libdir=$(libdir)" \
 	"libsubdir=$(libsubdir)" \
-	"tooldir_bin=$(tooldir_bin)"
-	"tooldir_lib=$(tooldir_lib)"
-	"tooldir_include=$(tooldir_include)"
+	"tooldir=$(tooldir)"
 
 # The 'all' rule must be the first one so that it is executed if
 # nothing is specified on the command-line.

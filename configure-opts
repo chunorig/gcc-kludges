@@ -25,6 +25,7 @@ LINUX_FUTEX=--enable-linux-futex
 
 [ $# -eq 1 ] || exit 1
 MAKEINFO=HaHaNope \
+CXX="${CXX:-c++} -stc=c++98" \
 "$1/configure" \
 -v \
 --enable-languages=c \

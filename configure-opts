@@ -58,7 +58,7 @@ ${LIBDIR:+--libdir=$LIBDIR} \
 --enable-objc-gc=auto \
 --enable-multiarch \
 --with-arch-32=i686 \
---disable-multilib \
+--enable-multilib \
 ${TUNE} \
 --build=x86_64-linux-gnu \
 --host=x86_64-linux-gnu \

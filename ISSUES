@@ -17,10 +17,6 @@ I expect to be backporting some things from trunk soon.
 
 -----
 
-There is a probably unnecessary patch added to 4.9 which compensates (in a way
-that will probably not be portable) for an error in my configure options.  So
-that will be dealt with soon.
-
 On a related note, a patch in the 3.2 kludges which fixes header search dirs is
 a poor, non-portable workaround for the lack of --enable-multiarch, which
 should be backported from 2012.

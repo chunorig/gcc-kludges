@@ -19,4 +19,6 @@ I expect to be backporting some things from trunk soon.
 
 On a related note, a patch in the 3.2 kludges which fixes header search dirs is
 a poor, non-portable workaround for the lack of --enable-multiarch, which
-should be backported from 2012.
+should be backported from 2012.  In fact the multilib support that already
+exists in 3.2 is fixed at the same time multiarch support is added.  My kludges
+are specifically helpful only on Debian and its derivatives, I suspect.

@@ -17,8 +17,21 @@ I expect to be backporting some things from trunk soon.
 
 -----
 
-On a related note, a patch in the 3.2 kludges which fixes header search dirs is
-a poor, non-portable workaround for the lack of --enable-multiarch, which
-should be backported from 2012.  In fact the multilib support that already
-exists in 3.2 is fixed at the same time multiarch support is added.  My kludges
-are specifically helpful only on Debian and its derivatives, I suspect.
+On a related note, a patch in the 3.2 kludges which fixes header search dirs
+is a poor, non-portable workaround for the lack of --enable-multiarch, which
+existed from 2012.  Anyone who was watching the repo on Github (nobody?) will
+have seen it apparently dead.
+
+Other things have taken more of Chuno's time than gcc-kludges lately.  There
+was a hare-brained scheme to backport multilib and multiarch support to 3.2,
+which was actually working (when it stopped, the changes were successfully
+applied to a point somewhere around June 2003) but also a really dumb thing to
+do.
+
+That does not mean however, that having gcc's search paths automagically just
+be correct for modern versions of supported OSes is abandoned; there is a
+better way to ensure it works across all of them.
+
+However gcc-kludges stuff in general is still on the back-burner at the time
+of writing (Sat 31 Aug 2019).  make check-gcc will fully work without the user
+having to worry about anything, one day.
